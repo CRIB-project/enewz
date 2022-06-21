@@ -3,10 +3,14 @@
 ENEWZ is an energy loss calculator which works on command line, and was originally written by Y. Watanabe san (in 90s!) in FORTRAN based on J. Ziegler’s code. (Hayakawa fixed minor bugs and usability.)
 
 # How to install
-Expand enewz.tar.gz, (for example at /usr/local/, but you may change that.) 
-Correct the directory written in a file DATAPATH.INC if you change the installation path. By default, it is /usr/local/enewz/ .
+* Move to the directory where you cloned the source files (for example, /usr/local/enewz)
+* Correct the path written in a file DATAPATH.INC to where it locates, if it is different from /usr/local/enewz/ .
+
+Then
 ```consol
-$cd /usr/local/enewz/, $ make, & $ sudo make install
+$ cd /usr/local/enewz/
+$ make
+$ sudo make install
 ```
 
 # How to use on command line
@@ -22,7 +26,9 @@ There are several different commands:
 # How to use in C++ codes / ROOT macros
 (Information originally found in daid’s website)
 
-If you succeed “make install”, a static library libenewzlib.a will be created on /usr/local/lib/ . This allows you to use enewz in C++ codes.
+If you succeed “make install”, a static library libenewzlib.a will be created on /usr/local/lib/ . This allows you to use enewz subrotine (and other commands written above) in C++ codes.
+
+There are both subrotines named enewzsub and enewzsub_etot, etc. The input and output energies of the former are in MeV/u, while those of the latter are in MeV. 
 
 There is a sample macro (test_enewz.C) and a makefile (Makefile_test) to demonstrate how to use enewz in C++. The makefile automatically determines the OS (Linux or Mac, I did not test it on Windows). You might need to change the path of “libstdc++.a” in the makefile. 
 
@@ -36,7 +42,10 @@ gfortran: error: unrecognized command-line option '-stdlib=libc++'
 
 
 
+
+
 --------------------------------------------------------------------------------------------
+# History...
 
 enewz  (Sep. 9, 2002)
 
@@ -44,7 +53,9 @@ enewz  (Sep. 9, 2002)
 
 - SNKE_MATTER.DAT updated in 2002 (T. Teranishi)
 
-- *sub*.f files to define subroutines to be included in libenewzlib.a (S. Hayakawa)
+- Debaged eoldz (S. Hayakawa)
+
+- Added *sub*.f files to define subroutines to be included in libenewzlib.a (S. Hayakawa)
 
 - SNKE_MATTER.DAT updated in 2022 (S. Hayakawa)
 
