@@ -1,0 +1,52 @@
+# name of .C program
+TARGET = test_enewz
+
+DEP  = $(TARGET).d
+SRCS = $(TARGET).C
+OBJS = $(addsuffix .o, $(basename $(SRCS)))
+
+ROOTCFLAGS = $(shell root-config --cflags)
+CXXFLAGS   = $(ROOTCFLAGS) -Wall 
+#GSLLIBS    = -lgsl -lgslcblas -lm
+#GSLLIBS    = -lm
+F77=gfortran 
+
+ifeq ($(shell uname),Linux)
+	ROOTLIBS   = $(shell root-config --libs)
+	CXXLIBS    = $(ROOTLIBS) #$(GSLLIBS)
+	CC = clang++-7
+	ENEWZLIB = /usr/local/lib
+	LFLAGSC = -L$(ENEWZLIB) -lenewzlib \
+	 /usr/lib/gcc/x86_64-linux-gnu/9/libstdc++.a
+else ifeq ($(shell uname),Darwin)
+	#	ROOTLIBS   = $(shell root-config --libs)
+	ROOTLIBS   = -L/Applications/root/lib \
+	-lCore -lImt -lRIO -lNet -lHist -lGraf -lGraf3d -lGpad \
+	-lROOTVecOps -lTree -lTreePlayer -lRint -lPostscript \
+	-lMatrix -lPhysics -lMathCore -lThread -lMultiProc -lROOTDataFrame \
+	-lpthread -lm -ldl
+	# -stdlib=libc++ 
+	CXXLIBS    = $(ROOTLIBS) -lstdc++ -lc++ #$(GSLLIBS)
+	CC = clang++
+#	CC = g++
+	ENEWZLIB = /usr/local/lib
+	LFLAGSC = -L$(ENEWZLIB) -lenewzlib
+endif
+
+all: dep $(TARGET)
+
+$(TARGET): $(OBJS)
+	$(F77) $(OBJS) -o $@ $(CXXLIBS) ${LFLAGSC}
+
+.cc.o:
+	$(CC) -c $< $(CXXFLAGS)
+
+.f.o:
+	${F77} -c $<
+
+dep:
+	$(CC) -MM $(SRCS) > $(DEP) $(CXXFLAGS)
+-include	 $(DEP)
+
+clean:
+	rm -f $(TARGET) $(OBJS)
