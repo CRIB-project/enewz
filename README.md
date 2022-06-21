@@ -8,7 +8,6 @@ ENEWZ is an energy loss calculator which works on command line, and was original
 
 Then
 ```consol
-$ cd /usr/local/enewz/
 $ make
 $ sudo make install
 ```
