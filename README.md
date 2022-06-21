@@ -25,9 +25,9 @@ There are several different commands:
 # How to use in C++ codes / ROOT macros
 (Information originally found in daid’s website)
 
-If you succeed “make install”, a static library libenewzlib.a will be created on /usr/local/lib/ . This allows you to use enewz subrotine (and other commands written above) in C++ codes.
+If you succeed “make install”, a static library libenewzlib.a will be created on /usr/local/lib/ . This allows you to use enewz subrotine (and others such as eoldzsub, rangezsub, range2ezsub, etc.) in C++ codes.
 
-There are both subrotines named enewzsub and enewzsub_etot, etc. The input and output energies of the former are in MeV/u, while those of the latter are in MeV. 
+There are both subrotines named enewzsub and enewzsub_etot, etc. The input and output energies of the former are treated in **MeV/u**, while those of the latter in **MeV**. 
 
 There is a sample macro (test_enewz.C) and a makefile (Makefile_test) to demonstrate how to use enewz in C++. The makefile automatically determines the OS (Linux or Mac, I did not test it on Windows). You might need to change the path of “libstdc++.a” in the makefile. 
 
