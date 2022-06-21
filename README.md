@@ -7,7 +7,7 @@ ENEWZ is an energy loss calculator which works on command line, and was original
 * Correct the path written in a file DATAPATH.INC to where it locates, if it is different from /usr/local/enewz/ .
 
 Then
-```consol
+```
 $ make
 $ sudo make install
 ```
@@ -33,7 +33,7 @@ There is a sample macro (test_enewz.C) and a makefile (Makefile_test) to demonst
 
 There would be an error when you try to make it on Mac (on Ubuntu I did not get such an error.) 
 
-```consol
+```
 gfortran: error: unrecognized command-line option '-stdlib=libc++'
 ```
 
